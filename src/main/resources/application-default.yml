@@ -1,0 +1,27 @@
+spring:
+  autoconfigure:
+    exclude=org:
+      springframework:
+        boot:
+          autoconfigure:
+            jdbc:
+              DataSourceAutoConfiguration:
+  datasource:
+    url: jdbc:mysql://127.0.0.1:3306/db01?useUnicode=true&characterEncoding=UTF-8&autoReconnect=true&serverTimezone=Asia/Shanghai&rewriteBatchedStatements=true
+    driver-class-name: com.mysql.jdbc.Driver
+    username: root
+    password: 1234
+  jackson: #指定时间格式，以及时区加上8小时
+    time-zone: GMT+8
+    date-format: "yyyy-MM-dd HH:mm:ss"
+    autoconfigure:
+      exclude: org.springframework.book.autoconfigure.jdbc.DataSourceAutoConfiguration
+
+logging:
+  level:
+    com.zaxxer.hikari: DEBUG
+mybatis:
+  mapper-locations: classpath:mapper/*.xml
+  configuration:
+    map-underscore-to-camel-case: true
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl

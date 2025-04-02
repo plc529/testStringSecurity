@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="https://www.thymeleaf.org">
+<head>
+    <title>自定义登录页</title>
+</head>
+<body>
+<div th:if="${param.error}">
+    无效的用户名或密码
+</div>
+<div th:if="${param.logout}">
+    您已成功注销
+</div>
+<form action="/user/login" method="post">
+    <div>
+        <label>用户名: <input type="text" name="username"/></label>
+    </div>
+    <div>
+        <label>密码: <input type="password" name="password"/></label>
+    </div>
+    <div>
+        <label>验证码: <input type="text" name="captcha"><img src="/cpmmon/captcha"/></label>
+    </div>
+    <div>
+        <input type="hidden" name="_csrf" th:value="${_csrf.token}"/>
+    </div>
+    <div>
+        <input type="submit" value="登录"/>
+    </div>
+</form>
+</body>
+</html>
